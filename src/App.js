@@ -14,9 +14,14 @@ class App extends Component {
     };
   }
 
+  reset = e => {
+    e.target.value = ''
+  }
+
   handleSearch = e => {
     NProgress.start()
     e.preventDefault();
+
     axios
       .get(
         `https://api.themoviedb.org/3/search/movie?api_key=27530fdbc7f1713e26852c635183cc82&language=en-US&query=${
@@ -44,7 +49,9 @@ class App extends Component {
         <nav>
           <h1><span><i class="fas fa-film"></i></span>  Movies Finder</h1>
 
-          <form onChange={this.handleSearch}>
+          <form 
+          onChange={this.handleSearch}
+          onBlur={this.reset}>
             <input
               
               type="text"
